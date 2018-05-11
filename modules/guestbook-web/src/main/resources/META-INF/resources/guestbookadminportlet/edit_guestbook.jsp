@@ -1,17 +1,28 @@
+<%@ page import="guestbook.service.GuestbookLocalService" %>
 <%@include file = "../init.jsp" %>
+<portlet:defineObjects/>
+<%
+    long guestbookId = ParamUtil.getLong(request, "guestbookId");
+
+    Guestbook guestbook = null;
+
+    if (guestbookId > 0) {
+        guestbook = GuestbookLocalServiceUtil.getGuestbook(guestbookId);
+    }
+%>
 
 <portlet:renderURL var="viewURL">
     <portlet:param name="mvcPath" value="/guestbookadminportlet/view.jsp" />
 </portlet:renderURL>
 
-<portlet:actionURL name='${guestbookId == null ? "addGuestbook" : "updateGuestbook"}' var="editGuestbookURL" />
+<portlet:actionURL name='<%= guestbook == null ? "addGuestbook" : "updateGuestbook" %>' var="editGuestbookURL" />
 
 <aui:form action="<%= editGuestbookURL %>" name="fm">
 
-    <aui:model-context bean="${guestbookId}" model="${guestbook.model.Guestbook.class}" />
+    <aui:model-context bean="<%= guestbook %>" model="<%= Guestbook.class %>" />
 
     <aui:input type="hidden" name="guestbookId"
-               value='${guestbookId == null ? "" : guestbookId.getGuestbookId()}' />
+               value='<%= guestbook == null ? "" : guestbook.getGuestbookId() %>' />
 
     <aui:fieldset>
         <aui:input name="name" />

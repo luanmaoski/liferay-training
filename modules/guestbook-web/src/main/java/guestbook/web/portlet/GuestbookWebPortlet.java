@@ -1,6 +1,5 @@
 package guestbook.web.portlet;
 
-import com.liferay.docs.guestbook.model.Entry;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -9,6 +8,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import guestbook.model.Entry;
 import guestbook.model.Guestbook;
 import guestbook.service.EntryLocalService;
 import guestbook.service.EntryLocalServiceUtil;
@@ -19,7 +19,6 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -185,18 +184,6 @@ public class GuestbookWebPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
-	}
-
-	private List<Entry> parseEntries(String[] guestbookEntries) {
-		List<Entry> entries = new ArrayList<Entry>();
-
-		for (String entry : guestbookEntries) {
-			String[] parts = entry.split("\\^", 2);
-			Entry gbEntry = new Entry(parts[0], parts[1]);
-			entries.add(gbEntry);
-		}
-
-		return entries;
 	}
 
 }
