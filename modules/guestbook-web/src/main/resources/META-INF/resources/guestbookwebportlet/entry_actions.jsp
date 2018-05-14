@@ -2,6 +2,7 @@
 <%@ page import="com.liferay.portal.kernel.service.ServiceContext" %>
 <%@ page import="com.liferay.portal.kernel.service.ServiceContextFactory" %>
 <%@ page import="com.liferay.portal.kernel.model.User" %>
+<%@ page import="search.service.permission.EntryPermission" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="theme" %>
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 <%@include file="../init.jsp"%>
@@ -21,30 +22,25 @@
 <liferay-ui:icon-menu>
 
     <portlet:renderURL var="viewEntryURL">
-        <portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-        <portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp" />
+        <portlet:param name="entryId"
+                       value="<%= String.valueOf(entry.getEntryId()) %>" />
+        <portlet:param name="mvcPath"
+                       value="/guestbookwebportlet/view_entry.jsp" />
     </portlet:renderURL>
 
-    <liferay-ui:icon
-            message="View"
-            url="<%= viewEntryURL.toString() %>"
-    />
+    <liferay-ui:icon message="View" url="<%= viewEntryURL.toString() %>" />
 
-    <c:if
-            test="<%= EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.UPDATE) %>">
+    <c:if test="<%= EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.UPDATE) %>">
         <portlet:renderURL var="editURL">
             <portlet:param name="entryId"
                            value="<%= String.valueOf(entry.getEntryId()) %>" />
             <portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
         </portlet:renderURL>
 
-        <liferay-ui:icon image="edit" message="Edit"
-                         url="<%=editURL.toString() %>" />
+        <liferay-ui:icon image="edit" message="Edit" url="<%=editURL.toString() %>" />
     </c:if>
 
-    <c:if
-            test="<%=EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.PERMISSIONS) %>">
-
+    <c:if test="<%=EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.PERMISSIONS) %>">
         <liferay-security:permissionsURL
                 modelResource="<%= Entry.class.getName() %>"
                 modelResourceDescription="<%= entry.getMessage() %>"
@@ -52,12 +48,9 @@
                 var="permissionsURL" />
 
         <liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
-
     </c:if>
 
-    <c:if
-            test="<%=EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.DELETE) %>">
-
+    <c:if test="<%=EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.DELETE) %>">
         <portlet:actionURL name="deleteEntry" var="deleteURL">
             <portlet:param name="entryId"
                            value="<%= String.valueOf(entry.getEntryId()) %>" />
@@ -67,5 +60,4 @@
 
         <liferay-ui:icon-delete url="<%=deleteURL.toString() %>" />
     </c:if>
-
 </liferay-ui:icon-menu>

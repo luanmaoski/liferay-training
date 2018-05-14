@@ -1,4 +1,4 @@
-package com.liferay.docs.guestbook.service.permission;
+package search.service.permission;
 
 import guestbook.model.Entry;
 import guestbook.service.EntryLocalService;
@@ -12,7 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 
 @Component(
         immediate = true,
-        property = {"model.class.name=com.liferay.docs.guestbook.model.Entry"}
+        property = {"model.class.name=guestbook.model.Entry"}
 )
 public class EntryPermission implements BaseModelPermissionChecker {
 

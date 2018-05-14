@@ -1,4 +1,4 @@
-package com.liferay.docs.guestbook.service.permission;
+package search.service.permission;
 
 import org.osgi.service.component.annotations.Component;
 

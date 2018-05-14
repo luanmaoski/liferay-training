@@ -15,7 +15,7 @@
 package guestbook.service.base;
 
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
-import com.liferay.asset.kernel.service.persistence.AssetTagPersistence;
+import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -435,59 +435,41 @@ public abstract class GuestbookServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the asset tag local service.
+	 * Returns the asset link local service.
 	 *
-	 * @return the asset tag local service
+	 * @return the asset link local service
 	 */
-	public com.liferay.asset.kernel.service.AssetTagLocalService getAssetTagLocalService() {
-		return assetTagLocalService;
+	public com.liferay.asset.kernel.service.AssetLinkLocalService getAssetLinkLocalService() {
+		return assetLinkLocalService;
 	}
 
 	/**
-	 * Sets the asset tag local service.
+	 * Sets the asset link local service.
 	 *
-	 * @param assetTagLocalService the asset tag local service
+	 * @param assetLinkLocalService the asset link local service
 	 */
-	public void setAssetTagLocalService(
-		com.liferay.asset.kernel.service.AssetTagLocalService assetTagLocalService) {
-		this.assetTagLocalService = assetTagLocalService;
+	public void setAssetLinkLocalService(
+		com.liferay.asset.kernel.service.AssetLinkLocalService assetLinkLocalService) {
+		this.assetLinkLocalService = assetLinkLocalService;
 	}
 
 	/**
-	 * Returns the asset tag remote service.
+	 * Returns the asset link persistence.
 	 *
-	 * @return the asset tag remote service
+	 * @return the asset link persistence
 	 */
-	public com.liferay.asset.kernel.service.AssetTagService getAssetTagService() {
-		return assetTagService;
+	public AssetLinkPersistence getAssetLinkPersistence() {
+		return assetLinkPersistence;
 	}
 
 	/**
-	 * Sets the asset tag remote service.
+	 * Sets the asset link persistence.
 	 *
-	 * @param assetTagService the asset tag remote service
+	 * @param assetLinkPersistence the asset link persistence
 	 */
-	public void setAssetTagService(
-		com.liferay.asset.kernel.service.AssetTagService assetTagService) {
-		this.assetTagService = assetTagService;
-	}
-
-	/**
-	 * Returns the asset tag persistence.
-	 *
-	 * @return the asset tag persistence
-	 */
-	public AssetTagPersistence getAssetTagPersistence() {
-		return assetTagPersistence;
-	}
-
-	/**
-	 * Sets the asset tag persistence.
-	 *
-	 * @param assetTagPersistence the asset tag persistence
-	 */
-	public void setAssetTagPersistence(AssetTagPersistence assetTagPersistence) {
-		this.assetTagPersistence = assetTagPersistence;
+	public void setAssetLinkPersistence(
+		AssetLinkPersistence assetLinkPersistence) {
+		this.assetLinkPersistence = assetLinkPersistence;
 	}
 
 	public void afterPropertiesSet() {
@@ -578,10 +560,8 @@ public abstract class GuestbookServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.asset.kernel.service.AssetEntryService assetEntryService;
 	@ServiceReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
-	@ServiceReference(type = com.liferay.asset.kernel.service.AssetTagLocalService.class)
-	protected com.liferay.asset.kernel.service.AssetTagLocalService assetTagLocalService;
-	@ServiceReference(type = com.liferay.asset.kernel.service.AssetTagService.class)
-	protected com.liferay.asset.kernel.service.AssetTagService assetTagService;
-	@ServiceReference(type = AssetTagPersistence.class)
-	protected AssetTagPersistence assetTagPersistence;
+	@ServiceReference(type = com.liferay.asset.kernel.service.AssetLinkLocalService.class)
+	protected com.liferay.asset.kernel.service.AssetLinkLocalService assetLinkLocalService;
+	@ServiceReference(type = AssetLinkPersistence.class)
+	protected AssetLinkPersistence assetLinkPersistence;
 }

@@ -1,7 +1,6 @@
 Bundle-Name: guestbook-web
 Bundle-SymbolicName: guestbook.web
 Bundle-Version: 1.0.0
-Export-Package: guestbook.web.constants
 Import-Package: guestbook.service,\
                 com.liferay.portal.kernel.exception;version="[7.0.0,8.0.0)",\
                 com.liferay.portal.kernel.model;version="[1.0.0,3.0.0)",\
